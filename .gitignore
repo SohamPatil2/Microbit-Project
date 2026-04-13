@@ -1,0 +1,8 @@
+.elf
+.o
+.bin
+.hex
+openocd.log
+gdb.txt
+.DS_Store
+Thumbs.db

@@ -1,0 +1,42 @@
+image: comp2300/comp2300-ci:2022.0.3
+
+generate_jobs:
+  tags:
+    - comp2300
+  stage: build
+  script:
+    - python3 /jobs.py generate-ci .week-1-ci.yml week-1 comp2300/comp2300-ci:2022.0.3
+    - python3 /jobs.py generate-ci .week-2-ci.yml week-2 comp2300/comp2300-ci:2022.0.3
+    - python3 /jobs.py generate-ci .week-3-ci.yml week-3 comp2300/comp2300-ci:2022.0.3
+  artifacts:
+    paths:
+      - .week-1-ci.yml
+      - .week-2-ci.yml
+      - .week-3-ci.yml
+
+week_1:
+  stage: test
+  needs: ["generate_jobs"]
+  trigger:
+    strategy: depend
+    include:
+      - artifact: .week-1-ci.yml
+        job: generate_jobs
+
+week_2:
+  stage: test
+  needs: ["generate_jobs"]
+  trigger:
+    strategy: depend
+    include:
+      - artifact: .week-2-ci.yml
+        job: generate_jobs
+
+week_3:
+  stage: test
+  needs: ["generate_jobs"]
+  trigger:
+    strategy: depend
+    include:
+      - artifact: .week-3-ci.yml
+        job: generate_jobs
