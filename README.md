@@ -1,17 +1,6 @@
-# COMP2300 6300 ENGN2219 Computer Organisation and Program Execution
 
-# 程序代做代写 CS编程辅导
+# Post Quantum Cryptographic Handshake and Messaging Protocol
 
-# WeChat: cstutorcs
+## Preface
 
-# Email: tutorcs@163.com
-
-# CS Tutor
-
-# Code Help
-
-# Programming Help
-
-# Computer Science Tutor
-
-# QQ: 749389476
+### Through this project we wish to show a proof of concept of communication handshaking using Learning with Errors method of quantum resistant handshaking and subsequent symetrically encrypted ChaCha20 protocol
