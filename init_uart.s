@@ -49,4 +49,3 @@ init_uart:
     STR     r1, [r0]
 
     POP     {pc}
-
