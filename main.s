@@ -54,8 +54,17 @@ main_loop:
 @ Called when laptop sends 'L'
 @ ─────────────────────────────────────────
 do_lwe:
-    @ TODO: BL lwe_generate_keypair  @ Member 3 adds this
-    B main_loop             @ go back to main loop
+    @ Phase 1: Generate the Public Key (b = As + e)
+    BL lwe_generate_keypair 
+    
+    @ Phase 2: Transmit the Public Key to the laptop
+    BL lwe_send_public_key
+    
+    @ Phase 3: Receive 256 bits, decrypt them, and assemble the ChaCha key
+    BL lwe_build_chacha_key
+
+    @ LWE Handshake complete! The 32-byte key is now in RAM.
+    B main_loop             @ go back to main loop to wait for 'C' (ChaCha)
 
 @ ─────────────────────────────────────────
 @ do_chacha
